@@ -1,8 +1,12 @@
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class Snorlax {
-    public static void intro(String name){
+    /**
+     * Prints the introduction message for the Snorlax assistant.
+     *
+     * @param name The name of the assistant.
+     */
+    public static void printIntro(String name){
         System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
         System.out.println("     Hello..... I'm " + name + ".....");
         System.out.println("     What can I do for you?");
@@ -31,30 +35,35 @@ public class Snorlax {
         }
     }
 
+    /**
+     * Prints the corresponding error message with message borders
+     *
+     * @param error The type of error.
+     */
     public static void printErrorMsg(String error){
         System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
         switch(error){
-            case "invalid task":
-                System.out.println("     Invalid task number.....");
-                break;
-            case "no input":
-                System.out.println("     Huh? Please type something.....");
-                break;
-            case "full list":
-                System.out.println("     Sorry.... list is full.....");
-                break;
-            case "incomplete task":
-                System.out.println("     Task is not done.....");
-                break;
-            case "completed task":
-                System.out.println("     Task is already done.....");
-                break;
+        case "invalid task":
+            System.out.println("     Invalid task number.....");
+            break;
+        case "no input":
+            System.out.println("     Huh? Please type something.....");
+            break;
+        case "full list":
+            System.out.println("     Sorry.... list is full.....");
+            break;
+        case "incomplete task":
+            System.out.println("     Task is not done.....");
+            break;
+        case "completed task":
+            System.out.println("     Task is already done.....");
+            break;
         }
         System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
     }
     public static void main(String[] args) {
         String name = "Snorlax";
-        intro(name);
+        printIntro(name);
 
         String line;
         Scanner in = new Scanner(System.in);
@@ -66,7 +75,7 @@ public class Snorlax {
         int count = 0;
 
         while (!line.equals("bye")){
-            String[] split_line = line.split(" ");
+            String[] splitLine = line.split(" ");
             if (line.equals("list")){
                 System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
                 if (count == 0){
@@ -74,16 +83,17 @@ public class Snorlax {
                 } else {
                     System.out.println("     Here are the tasks in the list:");
                     for (int i = 0; i < count; i++) {
-                        System.out.println("     " + (i + 1) + ":[" + list[i].getStatusIcon() + "] " + list[i].description + ".....");
+                        System.out.println("     " + (i + 1) + ":["
+                                + list[i].getStatusIcon() + "] " + list[i].description + ".....");
                     }
                 }
                 System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
             }
-            else if (split_line[0].equals("mark")){
-                if (split_line.length < 2 || !split_line[1].matches("\\d+")) {
+            else if (splitLine[0].equals("mark")){
+                if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
                     printErrorMsg("invalid task");
                 } else {
-                    int number = Integer.parseInt(split_line[1]) - 1;
+                    int number = Integer.parseInt(splitLine[1]) - 1;
                     if (number < 0 || number >= count) {
                         printErrorMsg("invalid task");
                     } else if (list[number].isDone) {
@@ -97,11 +107,11 @@ public class Snorlax {
                     }
                 }
             }
-            else if (split_line[0].equals("unmark")){
-                if (split_line.length < 2 || !split_line[1].matches("\\d+")) {
+            else if (splitLine[0].equals("unmark")){
+                if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
                     printErrorMsg("invalid task");
                 } else {
-                    int number = Integer.parseInt(split_line[1]) - 1;
+                    int number = Integer.parseInt(splitLine[1]) - 1;
                     if (number < 0 || number >= count) {
                         printErrorMsg("invalid task");
                     } else if (!list[number].isDone) {
