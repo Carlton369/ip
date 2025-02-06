@@ -9,37 +9,51 @@ public class Commands {
             System.out.println("     Here are the tasks in the list:");
             for (int i = 0; i < count; i++) {
                 System.out.println("     " + (i + 1) + ":["
-                        + list[i].getStatusIcon() + "] " + list[i].description + ".....");
+                        + list[i].getStatusIcon() + "] " + list[i].description);
             }
         }
         Snorlax.printBorder();
     }
 
-    public static void Mark(Task[] list, int number, int count){
-        if (number < 0 || number >= count) {
+    public static void Mark(Task[] list, int taskNumber, int count){
+        if (taskNumber < 0 || taskNumber >= count) {
             Snorlax.printErrorMsg("invalid task");
-        } else if (list[number].isDone) {
+        } else if (list[taskNumber].isDone) {
             Snorlax.printErrorMsg("completed task");
         } else {
             Snorlax.printBorder();
             System.out.println("     Ok..... I will mark this task as done.....");
-            System.out.println("     [X] " + list[number].description + ".....");
+            System.out.println("     [X] " + list[taskNumber].description);
             Snorlax.printBorder();
-            list[number].markAsDone();
+            list[taskNumber].markAsDone();
         }
     }
 
-    public static void Unmark(Task[] list, int number, int count){
-        if (number < 0 || number >= count) {
+    public static void Unmark(Task[] list, int taskNumber, int count){
+        if (taskNumber < 0 || taskNumber >= count) {
             Snorlax.printErrorMsg("invalid task");
-        } else if (!list[number].isDone) {
+        } else if (!list[taskNumber].isDone) {
             Snorlax.printErrorMsg("incomplete task");
         } else {
             Snorlax.printBorder();
             System.out.println("     Ok..... I will mark this task as not done yet.....");
-            System.out.println("     [ ] " + list[number].description + ".....");
+            System.out.println("     [ ] " + list[taskNumber].description);
             Snorlax.printBorder();
-            list[number].unmarkAsDone();
+            list[taskNumber].unmarkAsDone();
+        }
+    }
+
+    public static void Todo(Task[]list, int taskNumber, int count){
+        if (taskNumber < 0 || taskNumber >= count) {
+            Snorlax.printErrorMsg("invalid task");
+        } else if (!list[taskNumber].isDone) {
+            Snorlax.printErrorMsg("incomplete task");
+        } else {
+            Snorlax.printBorder();
+            System.out.println("     Ok..... I have added this task.....");
+            System.out.println("     [T][ ]" + list[taskNumber].description);
+            Snorlax.printBorder();
+            list[taskNumber].unmarkAsDone();
         }
     }
 
