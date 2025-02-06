@@ -1,38 +1,22 @@
 import java.util.Scanner;
+import Task.Task;
+import Task.Deadline;
 
 public class Snorlax {
+    public static void printBorder(){
+        System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+    }
+
     /**
      * Prints the introduction message for the Snorlax assistant.
      *
      * @param name The name of the assistant.
      */
     public static void printIntro(String name){
-        System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+        printBorder();
         System.out.println("     Hello..... I'm " + name + ".....");
         System.out.println("     What can I do for you?");
-        System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-    }
-
-    public static class Task {
-        protected String description;
-        protected boolean isDone;
-
-        public Task(String description) {
-            this.description = description;
-            this.isDone = false;
-        }
-
-        public String getStatusIcon() {
-            return (isDone ? "X" : " "); // mark done task with X
-        }
-
-        public void markAsDone() {
-            isDone = true;
-        }
-
-        public void unmarkAsDone() {
-            isDone = false;
-        }
+        printBorder();
     }
 
     /**
@@ -41,7 +25,7 @@ public class Snorlax {
      * @param error The type of error.
      */
     public static void printErrorMsg(String error){
-        System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+        printBorder();
         switch(error){
         case "invalid task":
             System.out.println("     Invalid task number.....");
@@ -59,8 +43,9 @@ public class Snorlax {
             System.out.println("     Task is already done.....");
             break;
         }
-        System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+        printBorder();
     }
+
     public static void main(String[] args) {
         String name = "Snorlax";
         printIntro(name);
@@ -76,73 +61,45 @@ public class Snorlax {
 
         while (!line.equals("bye")){
             String[] splitLine = line.split(" ");
-            if (line.equals("list")){
-                System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-                if (count == 0){
-                    System.out.println("     No tasks yet.....");
-                } else {
-                    System.out.println("     Here are the tasks in the list:");
-                    for (int i = 0; i < count; i++) {
-                        System.out.println("     " + (i + 1) + ":["
-                                + list[i].getStatusIcon() + "] " + list[i].description + ".....");
-                    }
+            switch (splitLine[0]) {
+                case "list" -> {
+                    Commands.List(list,count);
                 }
-                System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-            }
-            else if (splitLine[0].equals("mark")){
-                if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
-                    printErrorMsg("invalid task");
-                } else {
-                    int number = Integer.parseInt(splitLine[1]) - 1;
-                    if (number < 0 || number >= count) {
+                case "mark" -> {
+                    if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
                         printErrorMsg("invalid task");
-                    } else if (list[number].isDone) {
-                        printErrorMsg("completed task");
                     } else {
-                        System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-                        System.out.println("     Ok..... I will mark this task as done.....");
-                        System.out.println("     [X] " + list[number].description + ".....");
-                        System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-                        list[number].markAsDone();
+                        int number = Integer.parseInt(splitLine[1]) - 1;
+                        Commands.Mark(list, number, count);
                     }
                 }
-            }
-            else if (splitLine[0].equals("unmark")){
-                if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
-                    printErrorMsg("invalid task");
-                } else {
-                    int number = Integer.parseInt(splitLine[1]) - 1;
-                    if (number < 0 || number >= count) {
+                case "unmark" -> {
+                    if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
                         printErrorMsg("invalid task");
-                    } else if (!list[number].isDone) {
-                        printErrorMsg("incomplete task");
                     } else {
-                        System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-                        System.out.println("     Ok..... I will mark this task as not done yet.....");
-                        System.out.println("     [ ] " + list[number].description + ".....");
-                        System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-                        list[number].unmarkAsDone();
+                        int number = Integer.parseInt(splitLine[1]) - 1;
+                        Commands.Unmark(list, number, count);
                     }
                 }
-            }
-            else {
-                if (line.isEmpty()) {
-                    printErrorMsg("no input");
-                }
-                 else if (count < 100) {
-                    System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-                    System.out.println("     added: " + line + ".....");
-                    System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-                    list[count] = new Task(line);
-                    count += 1;
-                } else {
-                    printErrorMsg("full list");
+
+                default -> {
+                    if (line.isEmpty()) {
+                        printErrorMsg("no input");
+                    } else if (count < 100) {
+                        printBorder();
+                        System.out.println("     added: " + line + ".....");
+                        printBorder();
+                        list[count] = new Task(line);
+                        count += 1;
+                    } else {
+                        printErrorMsg("full list");
+                    }
                 }
             }
             line = in.nextLine().trim();
         }
-        System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+        printBorder();
         System.out.println("     Bye..... see you soon....");
-        System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+        printBorder();
     }
 }
