@@ -1,9 +1,10 @@
 import java.util.Scanner;
+
 import Task.Task;
 import Task.Deadline;
 
 public class Snorlax {
-    public static void printBorder(){
+    public static void printBorder() {
         System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
     }
 
@@ -12,7 +13,7 @@ public class Snorlax {
      *
      * @param name The name of the assistant.
      */
-    public static void printIntro(String name){
+    public static void printIntro(String name) {
         printBorder();
         System.out.println("     Hello..... I'm " + name + ".....");
         System.out.println("     What can I do for you?");
@@ -24,9 +25,9 @@ public class Snorlax {
      *
      * @param error The type of error.
      */
-    public static void printErrorMsg(String error){
+    public static void printErrorMsg(String error) {
         printBorder();
-        switch(error){
+        switch (error) {
         case "invalid task":
             System.out.println("     Invalid task number.....");
             break;
@@ -41,6 +42,9 @@ public class Snorlax {
             break;
         case "completed task":
             System.out.println("     Task is already done.....");
+            break;
+        case "invalid event":
+            System.out.println("     Invalid event.....");
             break;
         default:
             System.out.println("     Snorlax doesn't know what to do.......");
@@ -61,50 +65,66 @@ public class Snorlax {
 
         int count = 0;
 
-        while (!userInput.equals("bye")){
-            String[] splitLine = userInput.split(" ");
-            switch (splitLine[0]) {
-                case "list" -> {
-                    Commands.List(list,count);
+        while (!userInput.equals("bye")) {
+            String[] splitLine = userInput.split(" ",2);
+            //splits the userInput into the first word (command type) and the arguments
+            switch (splitLine[0].toLowerCase()) {
+            case "list" -> {
+                Commands.List(list, count);
+            }
+            case "mark" -> {
+                if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
+                    printErrorMsg("invalid task");
+                } else {
+                    int taskNumber = Integer.parseInt(splitLine[1]) - 1;
+                    Commands.Mark(list, taskNumber, count);
                 }
-                case "mark" -> {
-                    if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
-                        printErrorMsg("invalid task");
-                    } else {
-                        int taskNumber = Integer.parseInt(splitLine[1]) - 1;
-                        Commands.Mark(list, taskNumber, count);
-                    }
+            }
+            case "unmark" -> {
+                if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
+                    printErrorMsg("invalid task");
+                } else {
+                    int taskNumber = Integer.parseInt(splitLine[1]) - 1;
+                    Commands.Unmark(list, taskNumber, count);
                 }
-                case "unmark" -> {
-                    if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
-                        printErrorMsg("invalid task");
-                    } else {
-                        int taskNumber = Integer.parseInt(splitLine[1]) - 1;
-                        Commands.Unmark(list, taskNumber, count);
-                    }
+            }
+            case "deadline" -> {
+                if (splitLine.length < 2) {
+                    printErrorMsg("invalid task");
+                } else {
+                    Commands.Deadline(list, splitLine[1], count);
+                    count += 1;
                 }
-
-//                case "todo" -> {
-//                    if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
-//                        printErrorMsg("invalid task");
-//                    } else {
-//                        int taskNumber = Integer.parseInt(splitLine[1]) - 1;
-//                        Commands.Todo(list, taskNumber, count);
-//                    }
-//                }
-                default -> {
-                    if (userInput.isEmpty()) {
-                        printErrorMsg("no input");
-                    } else if (count < 100) {
-                        printBorder();
-                        System.out.println("     added: " + userInput);
-                        printBorder();
-                        list[count] = new Task(userInput);
-                        count += 1;
-                    } else {
-                        printErrorMsg("full list");
-                    }
+            }
+            case "todo" -> {
+                if (splitLine.length != 2) {
+                    printErrorMsg("invalid task");
+                } else {
+                    Commands.Todo(list,splitLine[1],count);
+                    count += 1;
                 }
+            }
+            case "event" -> {
+                if (splitLine.length != 2) {
+                    printErrorMsg("invalid task");
+                } else {
+                    Commands.Event(list,splitLine[1],count);
+                    count += 1;
+                }
+            }
+            default -> {
+                if (userInput.isEmpty()) {
+                    printErrorMsg("no input");
+                } else if (count < 100) {
+                    printBorder();
+                    System.out.println("     added: " + userInput);
+                    printBorder();
+                    list[count] = new Task(userInput);
+                    count += 1;
+                } else {
+                    printErrorMsg("full list");
+                }
+            }
             }
             userInput = in.nextLine().trim();
         }
