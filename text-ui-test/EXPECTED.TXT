@@ -1,30 +1,38 @@
-todo borrow book
-    ____________________________________________________________
-     Got it. I've added this task:
-       [T][ ] borrow book
-     Now you have 5 tasks in the list.
-    ____________________________________________________________
-
-list
-    ____________________________________________________________
-     Here are the tasks in your list:
-     1.[T][X] read book
-     2.[D][ ] return book (by: June 6th)
-     3.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
-     4.[T][X] join sports club
-     5.[T][ ] borrow book
-    ____________________________________________________________
-
-deadline return book /by Sunday
-    ____________________________________________________________
-     Got it. I've added this task:
-       [D][ ] return book (by: Sunday)
-     Now you have 6 tasks in the list.
-    ____________________________________________________________
-
-event project meeting /from Mon 2pm /to 4pm
-    ____________________________________________________________
-     Got it. I've added this task:
-       [E][ ] project meeting (from: Mon 2pm to: 4pm)
-     Now you have 7 tasks in the list.
-    ____________________________________________________________
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     Hello..... I'm Snorlax.....
+     What can I do for you?
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     Ok..... I have added this "todo" task.....
+     [T][ ] borrow book
+     You now have 1 tasks in the list...
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     Here are the tasks in the list:
+     1. [T][ ] borrow book
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     Ok..... I have added this "deadline" task.....
+     [D][ ] return book (by: Sunday)
+     You now have 2 tasks in the list...
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     Ok..... I have added this "event" task.....
+     [E][ ] project meeting (from: Mon 2pm to: 4pm)
+     You now have 3 tasks in the list...
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     Ok..... I have added this "deadline" task.....
+     [D][ ] do homework (by: no idea :-p)
+     You now have 4 tasks in the list...
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     Here are the tasks in the list:
+     1. [T][ ] borrow book
+     2. [D][ ] return book (by: Sunday)
+     3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+     4. [D][ ] do homework (by: no idea :-p)
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+     Bye..... see you soon....
+     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz

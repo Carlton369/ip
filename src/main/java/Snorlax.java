@@ -1,7 +1,5 @@
 import java.util.Scanner;
-
 import Task.Task;
-import Task.Deadline;
 
 public class Snorlax {
     public static void printBorder() {
