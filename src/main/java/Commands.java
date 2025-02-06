@@ -86,6 +86,11 @@ public class Commands {
         String eventStart = eventTimeline[0].trim();
         String eventEnd = eventTimeline[1].trim();
 
+        if (eventDescription.isEmpty() || eventStart.isEmpty() || eventEnd.isEmpty()) {
+            Snorlax.printErrorMsg("invalid event");
+            return;
+        }
+
         list[count] = new Event(eventDescription,eventStart, eventEnd);
 
         Snorlax.printBorder();
