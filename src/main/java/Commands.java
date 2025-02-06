@@ -63,8 +63,8 @@ public class Commands {
 
         Snorlax.printBorder();
         System.out.println("     Ok..... I have added this \"deadline\" task.....");
-        System.out.println("     " + list[count + 1].toString());
-        System.out.println("     You now have " + count + " tasks in the list...");
+        System.out.println("     " + list[count].toString());
+        System.out.println("     You now have " + (count + 1) + " tasks in the list...");
         Snorlax.printBorder();
     }
 
@@ -73,8 +73,8 @@ public class Commands {
 
         Snorlax.printBorder();
         System.out.println("     Ok..... I have added this \"todo\" task.....");
-        System.out.println("     " + list[count + 1].toString());
-        System.out.println("     You now have " + count + " tasks in the list...");
+        System.out.println("     " + list[count].toString());
+        System.out.println("     You now have " + (count + 1) + " tasks in the list...");
         Snorlax.printBorder();
     }
 
@@ -90,8 +90,8 @@ public class Commands {
 
         Snorlax.printBorder();
         System.out.println("     Ok..... I have added this \"event\" task.....");
-        System.out.println("     " + list[count + 1].toString());
-        System.out.println("     You now have " + count + " tasks in the list...");
+        System.out.println("     " + list[count].toString());
+        System.out.println("     You now have " + (count + 1) + " tasks in the list...");
         Snorlax.printBorder();
     }
 }
