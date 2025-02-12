@@ -1,13 +1,13 @@
-package ExceptionsPackage;
+package Snorlax.ExceptionsPackage;
 
-import UtilityPackage.Utilities;
+import Snorlax.UtilityPackage.Utilities;
 
 //default error
 public class UnknownErrorException extends SnorlaxException {
 
     public void handle() {
         Utilities.printBorder();
-        System.out.println("     Snorlax doesn't know what to do.......");
+        System.out.println("     Snorlax.UI.Snorlax doesn't know what to do.......");
         Utilities.printBorder();
     }
 

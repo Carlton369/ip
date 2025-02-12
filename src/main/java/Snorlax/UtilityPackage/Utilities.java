@@ -1,4 +1,4 @@
-package UtilityPackage;
+package Snorlax.UtilityPackage;
 
 public class Utilities {
     public static void printBorder() {
@@ -6,7 +6,7 @@ public class Utilities {
     }
 
     /**
-     * Prints the introduction message for the Snorlax assistant.
+     * Prints the introduction message for the Snorlax.UI.Snorlax assistant.
      *
      * @param name The name of the assistant.
      */

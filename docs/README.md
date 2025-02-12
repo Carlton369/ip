@@ -1,4 +1,4 @@
-# Snorlax User Guide
+# Snorlax.UI.Snorlax User Guide
 
 // Update the title above to match the actual product name
 

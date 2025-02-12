@@ -1,6 +1,8 @@
-import ExceptionsPackage.*;
-import TaskPackage.*;
-import UtilityPackage.Utilities;
+package Snorlax.CommandsPackage;
+
+import Snorlax.ExceptionsPackage.*;
+import Snorlax.TaskPackage.*;
+import Snorlax.UtilityPackage.Utilities;
 
 
 public class Commands {

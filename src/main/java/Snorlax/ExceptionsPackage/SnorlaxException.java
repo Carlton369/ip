@@ -1,4 +1,4 @@
-package ExceptionsPackage;
+package Snorlax.ExceptionsPackage;
 
 //parent exception class, to be overridden by the corresponding exception
 public abstract class SnorlaxException extends RuntimeException {
