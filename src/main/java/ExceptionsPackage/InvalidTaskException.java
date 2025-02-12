@@ -1,4 +1,4 @@
 package ExceptionsPackage;
 
-public class InvalidTaskException extends Exception{
+public class InvalidTaskException extends RuntimeException{
 }

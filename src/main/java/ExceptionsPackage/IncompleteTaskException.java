@@ -1,5 +1,5 @@
 package ExceptionsPackage;
 
-public class IncompleteTaskException extends Exception{
+public class IncompleteTaskException extends RuntimeException{
 }
 

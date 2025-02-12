@@ -1,4 +1,12 @@
 package ExceptionsPackage;
 
-public class CompletedTaskException extends Exception{
+class CompletedTaskException extends SnorlaxException{
+    public CompletedTaskException() {
+        super();
+    }
+
+    @Override
+    public void handle(){
+
+    }
 }

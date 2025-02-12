@@ -1,4 +1,6 @@
 import java.util.Scanner;
+
+import ExceptionsPackage.*;
 import TaskPackage.*;
 import UtilityPackage.Utilities;
 
@@ -50,65 +52,70 @@ public class Snorlax {
         int count = 0;
 
         while (!userInput.equals("bye")) {
-            String[] splitLine = userInput.split(" ",2);
-            //splits the userInput into the first word (command type) and the arguments
-            switch (splitLine[0].toLowerCase()) {
-            case "list" -> {
-                Commands.List(list, count);
-            }
-            case "mark" -> {
-                if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
-                    printErrorMsg("invalid task");
-                } else {
-                    int taskNumber = Integer.parseInt(splitLine[1]) - 1;
-                    Commands.Mark(list, taskNumber, count);
+            try {
+                String[] splitLine = userInput.split(" ", 2);
+                //splits the userInput into the first word (command type) and the arguments
+                switch (splitLine[0].toLowerCase()) {
+                case "list" -> {
+                    Commands.List(list, count);
+                }
+                case "mark" -> {
+                    if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
+                        printErrorMsg("invalid task");
+                    } else {
+                        int taskNumber = Integer.parseInt(splitLine[1]) - 1;
+                        Commands.Mark(list, taskNumber, count);
+                    }
+                }
+                case "unmark" -> {
+                    if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
+                        printErrorMsg("invalid task");
+                    } else {
+                        int taskNumber = Integer.parseInt(splitLine[1]) - 1;
+                        Commands.Unmark(list, taskNumber, count);
+                    }
+                }
+                case "deadline" -> {
+                    if (splitLine.length < 2) {
+                        printErrorMsg("invalid task");
+                    } else {
+                        Commands.Deadline(list, splitLine[1], count);
+                        count += 1;
+                    }
+                }
+                case "todo" -> {
+                    if (splitLine.length != 2) {
+                        printErrorMsg("invalid task");
+                    } else {
+                        Commands.Todo(list, splitLine[1], count);
+                        count += 1;
+                    }
+                }
+                case "event" -> {
+                    if (splitLine.length != 2) {
+                        printErrorMsg("invalid task");
+                    } else {
+                        Commands.Event(list, splitLine[1], count);
+                        count += 1;
+                    }
+                }
+                default -> {
+                    if (userInput.isEmpty()) {
+                        throw new NoInputException();
+                    } else if (count < 100) {
+                        Utilities.printBorder();
+                        System.out.println("     added: " + userInput);
+                        Utilities.printBorder();
+                        list[count] = new Task(userInput);
+                        count += 1;
+                    } else {
+                        printErrorMsg("full list");
+                    }
+                }
                 }
             }
-            case "unmark" -> {
-                if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
-                    printErrorMsg("invalid task");
-                } else {
-                    int taskNumber = Integer.parseInt(splitLine[1]) - 1;
-                    Commands.Unmark(list, taskNumber, count);
-                }
-            }
-            case "deadline" -> {
-                if (splitLine.length < 2) {
-                    printErrorMsg("invalid task");
-                } else {
-                    Commands.Deadline(list, splitLine[1], count);
-                    count += 1;
-                }
-            }
-            case "todo" -> {
-                if (splitLine.length != 2) {
-                    printErrorMsg("invalid task");
-                } else {
-                    Commands.Todo(list,splitLine[1],count);
-                    count += 1;
-                }
-            }
-            case "event" -> {
-                if (splitLine.length != 2) {
-                    printErrorMsg("invalid task");
-                } else {
-                    Commands.Event(list,splitLine[1],count);
-                    count += 1;
-                }
-            }
-            default -> {
-                if (userInput.isEmpty()) {
-                    printErrorMsg("no input");
-                } else if (count < 100) {
-                    Utilities.printBorder();
-                    System.out.println("     added: " + userInput);
-                    Utilities.printBorder();
-                    list[count] = new Task(userInput);
-                    count += 1;
-                } else {
-                    printErrorMsg("full list");
-                }
-            }
+            catch (NoInputException e) {
+                e.handle();
             }
             userInput = in.nextLine().trim();
         }

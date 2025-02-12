@@ -1,4 +1,4 @@
 package ExceptionsPackage;
 
-public class InvalidEventException extends Exception{
+public class InvalidEventException extends RuntimeException{
 }
