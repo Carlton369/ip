@@ -1,6 +1,6 @@
-package ExceptionsPackage;
+package Snorlax.ExceptionsPackage;
 
-import UtilityPackage.Utilities;
+import Snorlax.UtilityPackage.Utilities;
 
 //when user enters a blank input
 public class NoInputException extends SnorlaxException {

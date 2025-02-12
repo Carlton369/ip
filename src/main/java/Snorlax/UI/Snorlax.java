@@ -1,42 +1,13 @@
+package Snorlax.UI;
+
 import java.util.Scanner;
 
-import ExceptionsPackage.*;
-import TaskPackage.*;
-import UtilityPackage.Utilities;
+import Snorlax.CommandsPackage.*;
+import Snorlax.ExceptionsPackage.*;
+import Snorlax.TaskPackage.*;
+import Snorlax.UtilityPackage.*;
 
 public class Snorlax {
-
-    /**
-     * Prints the corresponding error message with message borders
-     *
-     * @param error The type of error.
-     */
-//    public static void printErrorMsg(String error) {
-//        Utilities.printBorder();
-//        switch (error) {
-//        case "invalid task":
-//            System.out.println("     Invalid task number.....");
-//            break;
-//        case "no input":
-//            System.out.println("     Huh? Please type something.....");
-//            break;
-//        case "full list":
-//            System.out.println("     Sorry.... list is full.....");
-//            break;
-//        case "incomplete task":
-//            System.out.println("     Task is not done.....");
-//            break;
-//        case "completed task":
-//            System.out.println("     Task is already done.....");
-//            break;
-//        case "invalid event":
-//            System.out.println("     Invalid event.....");
-//            break;
-//        default:
-//            System.out.println("     Snorlax doesn't know what to do.......");
-//        }
-//        Utilities.printBorder();
-//    }
 
     public static void main(String[] args) {
         String name = "Snorlax";

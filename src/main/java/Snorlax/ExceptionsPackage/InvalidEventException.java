@@ -1,6 +1,6 @@
-package ExceptionsPackage;
+package Snorlax.ExceptionsPackage;
 
-import UtilityPackage.Utilities;
+import Snorlax.UtilityPackage.Utilities;
 
 //when user tries to make a new event but does not give a description, start time, or end time
 public class InvalidEventException extends SnorlaxException {

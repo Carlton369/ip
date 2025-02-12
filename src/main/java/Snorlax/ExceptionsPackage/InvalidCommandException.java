@@ -1,6 +1,6 @@
-package ExceptionsPackage;
+package Snorlax.ExceptionsPackage;
 
-import UtilityPackage.Utilities;
+import Snorlax.UtilityPackage.Utilities;
 
 //when user does not give a valid command
 //valid commands: list, bye, mark, unmark, event, deadline, todo

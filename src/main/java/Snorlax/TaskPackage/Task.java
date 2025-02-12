@@ -1,4 +1,4 @@
-package TaskPackage;
+package Snorlax.TaskPackage;
 
 public class Task {
     public String description;

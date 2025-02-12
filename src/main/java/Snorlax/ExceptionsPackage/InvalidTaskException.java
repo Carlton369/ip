@@ -1,6 +1,6 @@
-package ExceptionsPackage;
+package Snorlax.ExceptionsPackage;
 
-import UtilityPackage.Utilities;
+import Snorlax.UtilityPackage.Utilities;
 
 //when user gives a proper command but does not give give a description
 public class InvalidTaskException extends SnorlaxException {

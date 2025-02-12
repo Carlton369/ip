@@ -1,6 +1,6 @@
-package ExceptionsPackage;
+package Snorlax.ExceptionsPackage;
 
-import UtilityPackage.Utilities;
+import Snorlax.UtilityPackage.Utilities;
 
 //when user tries to mark an already completed task as done
 public class CompletedTaskException extends SnorlaxException {
