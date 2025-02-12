@@ -11,32 +11,32 @@ public class Snorlax {
      *
      * @param error The type of error.
      */
-    public static void printErrorMsg(String error) {
-        Utilities.printBorder();
-        switch (error) {
-        case "invalid task":
-            System.out.println("     Invalid task number.....");
-            break;
-        case "no input":
-            System.out.println("     Huh? Please type something.....");
-            break;
-        case "full list":
-            System.out.println("     Sorry.... list is full.....");
-            break;
-        case "incomplete task":
-            System.out.println("     Task is not done.....");
-            break;
-        case "completed task":
-            System.out.println("     Task is already done.....");
-            break;
-        case "invalid event":
-            System.out.println("     Invalid event.....");
-            break;
-        default:
-            System.out.println("     Snorlax doesn't know what to do.......");
-        }
-        Utilities.printBorder();
-    }
+//    public static void printErrorMsg(String error) {
+//        Utilities.printBorder();
+//        switch (error) {
+//        case "invalid task":
+//            System.out.println("     Invalid task number.....");
+//            break;
+//        case "no input":
+//            System.out.println("     Huh? Please type something.....");
+//            break;
+//        case "full list":
+//            System.out.println("     Sorry.... list is full.....");
+//            break;
+//        case "incomplete task":
+//            System.out.println("     Task is not done.....");
+//            break;
+//        case "completed task":
+//            System.out.println("     Task is already done.....");
+//            break;
+//        case "invalid event":
+//            System.out.println("     Invalid event.....");
+//            break;
+//        default:
+//            System.out.println("     Snorlax doesn't know what to do.......");
+//        }
+//        Utilities.printBorder();
+//    }
 
     public static void main(String[] args) {
         String name = "Snorlax";
@@ -61,7 +61,7 @@ public class Snorlax {
                 }
                 case "mark" -> {
                     if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
-                        printErrorMsg("invalid task");
+                        throw new InvalidTaskException();
                     } else {
                         int taskNumber = Integer.parseInt(splitLine[1]) - 1;
                         Commands.Mark(list, taskNumber, count);
@@ -69,7 +69,7 @@ public class Snorlax {
                 }
                 case "unmark" -> {
                     if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
-                        printErrorMsg("invalid task");
+                        throw new InvalidTaskException();
                     } else {
                         int taskNumber = Integer.parseInt(splitLine[1]) - 1;
                         Commands.Unmark(list, taskNumber, count);
@@ -77,7 +77,9 @@ public class Snorlax {
                 }
                 case "deadline" -> {
                     if (splitLine.length < 2) {
-                        printErrorMsg("invalid task");
+                        throw new InvalidTaskException();
+                    } else if (count >= 100) {
+                        throw new FullListException();
                     } else {
                         Commands.Deadline(list, splitLine[1], count);
                         count += 1;
@@ -85,7 +87,9 @@ public class Snorlax {
                 }
                 case "todo" -> {
                     if (splitLine.length != 2) {
-                        printErrorMsg("invalid task");
+                        throw new InvalidTaskException();
+                    } else if (count >= 100) {
+                        throw new FullListException();
                     } else {
                         Commands.Todo(list, splitLine[1], count);
                         count += 1;
@@ -93,7 +97,9 @@ public class Snorlax {
                 }
                 case "event" -> {
                     if (splitLine.length != 2) {
-                        printErrorMsg("invalid task");
+                        throw new InvalidTaskException();
+                    } else if (count >= 100) {
+                        throw new FullListException();
                     } else {
                         Commands.Event(list, splitLine[1], count);
                         count += 1;
@@ -102,19 +108,13 @@ public class Snorlax {
                 default -> {
                     if (userInput.isEmpty()) {
                         throw new NoInputException();
-                    } else if (count < 100) {
-                        Utilities.printBorder();
-                        System.out.println("     added: " + userInput);
-                        Utilities.printBorder();
-                        list[count] = new Task(userInput);
-                        count += 1;
                     } else {
-                        printErrorMsg("full list");
+                        throw new InvalidCommandException();
                     }
                 }
                 }
             }
-            catch (NoInputException e) {
+            catch (SnorlaxException e) {
                 e.handle();
             }
             userInput = in.nextLine().trim();
