@@ -1,22 +1,8 @@
 import java.util.Scanner;
-import Task.Task;
+import TaskPackage.*;
+import UtilityPackage.Utilities;
 
 public class Snorlax {
-    public static void printBorder() {
-        System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-    }
-
-    /**
-     * Prints the introduction message for the Snorlax assistant.
-     *
-     * @param name The name of the assistant.
-     */
-    public static void printIntro(String name) {
-        printBorder();
-        System.out.println("     Hello..... I'm " + name + ".....");
-        System.out.println("     What can I do for you?");
-        printBorder();
-    }
 
     /**
      * Prints the corresponding error message with message borders
@@ -24,7 +10,7 @@ public class Snorlax {
      * @param error The type of error.
      */
     public static void printErrorMsg(String error) {
-        printBorder();
+        Utilities.printBorder();
         switch (error) {
         case "invalid task":
             System.out.println("     Invalid task number.....");
@@ -47,12 +33,12 @@ public class Snorlax {
         default:
             System.out.println("     Snorlax doesn't know what to do.......");
         }
-        printBorder();
+        Utilities.printBorder();
     }
 
     public static void main(String[] args) {
         String name = "Snorlax";
-        printIntro(name);
+        Utilities.printIntro(name);
 
         String userInput;
         Scanner in = new Scanner(System.in);
@@ -114,9 +100,9 @@ public class Snorlax {
                 if (userInput.isEmpty()) {
                     printErrorMsg("no input");
                 } else if (count < 100) {
-                    printBorder();
+                    Utilities.printBorder();
                     System.out.println("     added: " + userInput);
-                    printBorder();
+                    Utilities.printBorder();
                     list[count] = new Task(userInput);
                     count += 1;
                 } else {
@@ -126,8 +112,8 @@ public class Snorlax {
             }
             userInput = in.nextLine().trim();
         }
-        printBorder();
+        Utilities.printBorder();
         System.out.println("     Bye..... see you soon....");
-        printBorder();
+        Utilities.printBorder();
     }
 }
