@@ -23,6 +23,7 @@ public class FileIO {
     public static ArrayList<Task> loadTasks() {
         ArrayList<Task> list = new ArrayList<>();
         File file = new File(FILE_PATH);
+        file.getParentFile().mkdirs(); // Ensure the folder exists
 
         if (!file.exists()) {
             return list; // Return empty list if file doesn't exist
