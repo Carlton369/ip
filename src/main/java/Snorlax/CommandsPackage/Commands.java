@@ -25,11 +25,12 @@ public class Commands {
         } else if (list.get(taskNumber).isDone) {
             throw new CompletedTaskException();
         } else {
+            list.get(taskNumber).markAsDone();
+
             Utilities.printBorder();
             System.out.println("     Ok..... I will mark this task as done.....");
-            System.out.println("     [X] " + list.get(taskNumber).description);
+            System.out.println("     " + list.get(taskNumber).toString());
             Utilities.printBorder();
-            list.get(taskNumber).markAsDone();
         }
     }
 
@@ -39,11 +40,26 @@ public class Commands {
         } else if (!list.get(taskNumber).isDone) {
             throw new IncompleteTaskException();
         } else {
+            list.get(taskNumber).unmarkAsDone();
+
             Utilities.printBorder();
             System.out.println("     Ok..... I will mark this task as not done yet.....");
-            System.out.println("     [ ] " + list.get(taskNumber).description);
+            System.out.println("     " + list.get(taskNumber).toString());
             Utilities.printBorder();
-            list.get(taskNumber).unmarkAsDone();
+        }
+    }
+
+    public static void Delete(ArrayList<Task> list, int taskNumber) {
+        if (taskNumber < 0 || taskNumber >= list.size()) {
+            throw new NonexistentTaskException();
+        } else {
+            Utilities.printBorder();
+            System.out.println("     Ok..... I will delete this task.....");
+            String taskDescription = list.get(taskNumber).toString();
+            System.out.println("     " + Utilities.strikethrough(taskDescription));
+            Utilities.printBorder();
+
+            list.remove(taskNumber);
         }
     }
 
@@ -99,4 +115,5 @@ public class Commands {
         System.out.println("     You now have " + list.size() + " tasks in the list...");
         Utilities.printBorder();
     }
+
 }
