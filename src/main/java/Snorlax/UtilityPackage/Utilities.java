@@ -17,4 +17,7 @@ public class Utilities {
         printBorder();
     }
 
+    public static String strikethrough(String text) {
+        return text.replaceAll(".", "$0̶"); // Adds a strikethrough effect
+    }
 }
