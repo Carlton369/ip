@@ -1,5 +1,7 @@
 package Snorlax.TaskPackage;
 
+import Snorlax.IOPackage.IO;
+
 public class Task {
     public String description;
     public boolean isDone;
@@ -19,6 +21,10 @@ public class Task {
 
     public void unmarkAsDone() {
         isDone = false;
+    }
+
+    public String toFileFormat() {
+        return (isDone ? "1" : "0") + "|";
     }
 
     public String toString(){
