@@ -1,7 +1,7 @@
 package Snorlax.UI;
 
 import java.util.Scanner;
-
+import java.util.ArrayList;
 import Snorlax.CommandsPackage.*;
 import Snorlax.ExceptionsPackage.*;
 import Snorlax.TaskPackage.*;
@@ -18,7 +18,7 @@ public class Snorlax {
 
         userInput = in.nextLine().trim();
 
-        Task[] list = new Task[100];
+        ArrayList<Task> list = new ArrayList<>();
 
         int count = 0;
 
@@ -28,14 +28,14 @@ public class Snorlax {
                 //splits the userInput into the first word (command type) and the arguments
                 switch (splitLine[0].toLowerCase()) {
                 case "list" -> {
-                    Commands.List(list, count);
+                    Commands.List(list);
                 }
                 case "mark" -> {
                     if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
                         throw new InvalidTaskException();
                     } else {
                         int taskNumber = Integer.parseInt(splitLine[1]) - 1;
-                        Commands.Mark(list, taskNumber, count);
+                        Commands.Mark(list, taskNumber);
                     }
                 }
                 case "unmark" -> {
@@ -43,7 +43,7 @@ public class Snorlax {
                         throw new InvalidTaskException();
                     } else {
                         int taskNumber = Integer.parseInt(splitLine[1]) - 1;
-                        Commands.Unmark(list, taskNumber, count);
+                        Commands.Unmark(list, taskNumber);
                     }
                 }
                 case "deadline" -> {
@@ -52,7 +52,7 @@ public class Snorlax {
                     } else if (count >= 100) {
                         throw new FullListException();
                     } else {
-                        Commands.Deadline(list, splitLine[1], count);
+                        Commands.Deadline(list, splitLine[1]);
                         count += 1;
                     }
                 }
@@ -62,7 +62,7 @@ public class Snorlax {
                     } else if (count >= 100) {
                         throw new FullListException();
                     } else {
-                        Commands.Todo(list, splitLine[1], count);
+                        Commands.Todo(list, splitLine[1]);
                         count += 1;
                     }
                 }
@@ -72,7 +72,7 @@ public class Snorlax {
                     } else if (count >= 100) {
                         throw new FullListException();
                     } else {
-                        Commands.Event(list, splitLine[1], count);
+                        Commands.Event(list, splitLine[1]);
                         count += 1;
                     }
                 }
