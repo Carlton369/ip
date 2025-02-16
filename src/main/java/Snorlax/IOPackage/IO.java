@@ -31,6 +31,15 @@ public class IO {
                 FileIO.saveTasks(list);
             }
         }
+        case "delete" -> {
+            if (splitLine.length < 2 || !splitLine[1].matches("\\d+")) {
+                throw new InvalidTaskException();
+            } else {
+                int taskNumber = Integer.parseInt(splitLine[1]) - 1;
+                Commands.Delete(list,taskNumber);
+                FileIO.saveTasks(list);
+            }
+        }
         case "deadline" -> {
             if (splitLine.length < 2) {
                 throw new InvalidTaskException();
