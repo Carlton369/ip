@@ -1,5 +1,6 @@
 package Snorlax.TaskListPackage;
 
+import java.time.LocalDate;
 /**
  * Represents a general task with a description and completion status.
  */
@@ -23,6 +24,13 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+    }
+
+    public String formatDate(LocalDate date) {
+        String day = String.valueOf(date.getDayOfMonth());
+        String month = date.getMonth().toString();
+        String year = String.valueOf(date.getYear());
+        return day + "-" + month + "-" + year;
     }
 
     /**

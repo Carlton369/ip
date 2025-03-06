@@ -1,5 +1,7 @@
 package Snorlax.TaskListPackage;
 
+import java.time.LocalDate;
+
 /**
  * Represents a task with a deadline.
  */
@@ -8,7 +10,7 @@ public class Deadline extends Task {
     /**
      * The deadline of the task.
      */
-    protected String by;
+    protected LocalDate by;
 
     /**
      * Constructs a Deadline task with a description and deadline.
@@ -18,7 +20,11 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String by) {
         super(description);
-        this.by = by;
+        this.by = LocalDate.parse(by);
+    }
+
+    public LocalDate getBy(){
+        return by;
     }
 
     /**
@@ -28,7 +34,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + formatDate(by) + ")";
     }
 
     /**

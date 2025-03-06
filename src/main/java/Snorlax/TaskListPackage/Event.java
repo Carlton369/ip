@@ -1,4 +1,5 @@
 package Snorlax.TaskListPackage;
+import java.time.LocalDate;
 
 /**
  * Represents an event task with a start and end time.
@@ -8,12 +9,12 @@ public class Event extends Task {
     /**
      * The start time of the event.
      */
-    protected String from;
 
+    protected LocalDate from;
     /**
      * The end time of the event.
      */
-    protected String to;
+    protected LocalDate to;
 
     /**
      * Constructs an Event task with a description, start time, and end time.
@@ -24,8 +25,16 @@ public class Event extends Task {
      */
     public Event(String description, String from, String to) {
         super(description);
-        this.from = from;
-        this.to = to;
+        this.from = LocalDate.parse(from);
+        this.to = LocalDate.parse(to);
+    }
+
+    public LocalDate getFrom() {
+        return from;
+    }
+
+    public LocalDate getTo() {
+        return to;
     }
 
     /**
@@ -35,7 +44,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + from + " to: " + to + ")";
+        return "[E]" + super.toString() + " (from: " + formatDate(from) + " to: " + formatDate(to) + ")";
     }
 
     /**

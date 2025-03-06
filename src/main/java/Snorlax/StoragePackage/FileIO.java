@@ -1,7 +1,11 @@
 package Snorlax.StoragePackage;
 
 import java.io.*;
+
+import Snorlax.ExceptionsPackage.*;
 import Snorlax.TaskListPackage.*;
+
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import static Snorlax.Snorlax.FILE_PATH;
 
@@ -58,14 +62,14 @@ public class FileIO {
                     }
                 }
                 case "deadline" -> {
-                    String[] splitDeadlineDescription = taskDescription.split("/by");
+                    String[] splitDeadlineDescription = splitTaskDescription[1].split("/by");
                     list.add(new Deadline(splitDeadlineDescription[0], splitDeadlineDescription[1]));
                     if (isDone) {
                         list.get(list.size() - 1).markAsDone();
                     }
                 }
                 case "event" -> {
-                    String[] splitEventDescription = taskDescription.split("/from");
+                    String[] splitEventDescription = splitTaskDescription[1].split("/from");
                     String[] eventToFrom = splitEventDescription[1].split("/to");
                     list.add(new Event(splitEventDescription[0], eventToFrom[0], eventToFrom[1]));
                     if (isDone) {
@@ -76,6 +80,8 @@ public class FileIO {
             }
         } catch (IOException e) {
             System.out.println("Error loading tasks: " + e.getMessage());
+        } catch (DateTimeParseException e){
+            System.out.println("     WARNING!!!Corrupted dates in task");
         }
         return list;
     }
