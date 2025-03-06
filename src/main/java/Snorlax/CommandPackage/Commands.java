@@ -218,4 +218,13 @@ public class Commands {
         }
     }
 
+    public static void Find(ArrayList<Task> list, String toFindKey) {
+        UI.printBorder();
+        System.out.println("     Here are the related tasks:.....");
+        for (Task task : list) {
+            if (task.description.contains(toFindKey)) {
+                System.out.println("     "  + task.toString());
+            }
+        }
+    }
 }
