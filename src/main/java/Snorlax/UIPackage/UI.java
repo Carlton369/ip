@@ -1,12 +1,12 @@
-package Snorlax.UtilityPackage;
+package Snorlax.UIPackage;
 
-public class Utilities {
+public class UI {
     public static void printBorder() {
         System.out.println("     zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
     }
 
     /**
-     * Prints the introduction message for the Snorlax.UI.Snorlax assistant.
+     * Prints the introduction message for the Snorlax.Snorlax assistant.
      *
      * @param name The name of the assistant.
      */
@@ -19,5 +19,11 @@ public class Utilities {
 
     public static String strikethrough(String text) {
         return text.replaceAll(".", "$0̶"); // Adds a strikethrough effect
+    }
+
+    public static void printOutro() {
+        UI.printBorder();
+        System.out.println("     Bye..... see you soon....");
+        UI.printBorder();
     }
 }

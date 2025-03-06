@@ -1,13 +1,14 @@
-package Snorlax.CommandsPackage;
+package Snorlax.CommandPackage;
 
+import Snorlax.ParserPackage.IO;
 import Snorlax.ExceptionsPackage.*;
-import Snorlax.TaskPackage.*;
-import Snorlax.UtilityPackage.Utilities;
+import Snorlax.TaskListPackage.*;
+import Snorlax.UIPackage.UI;
 import java.util.ArrayList;
 
 public class Commands {
     public static void List(ArrayList<Task> list) {
-        Utilities.printBorder();
+        UI.printBorder();
         if (list.isEmpty()) {
             System.out.println("     No tasks yet.....");
         } else {
@@ -16,7 +17,7 @@ public class Commands {
                 System.out.println("     " + (i + 1) + ". " + list.get(i).toString());
             }
         }
-        Utilities.printBorder();
+        UI.printBorder();
     }
 
     public static void Mark(ArrayList<Task> list, int taskNumber) {
@@ -27,10 +28,10 @@ public class Commands {
         } else {
             list.get(taskNumber).markAsDone();
 
-            Utilities.printBorder();
+            UI.printBorder();
             System.out.println("     Ok..... I will mark this task as done.....");
             System.out.println("     " + list.get(taskNumber).toString());
-            Utilities.printBorder();
+            UI.printBorder();
         }
     }
 
@@ -42,10 +43,10 @@ public class Commands {
         } else {
             list.get(taskNumber).unmarkAsDone();
 
-            Utilities.printBorder();
+            UI.printBorder();
             System.out.println("     Ok..... I will mark this task as not done yet.....");
             System.out.println("     " + list.get(taskNumber).toString());
-            Utilities.printBorder();
+            UI.printBorder();
         }
     }
 
@@ -53,11 +54,11 @@ public class Commands {
         if (taskNumber < 0 || taskNumber >= list.size()) {
             throw new NonexistentTaskException();
         } else {
-            Utilities.printBorder();
+            UI.printBorder();
             System.out.println("     Ok..... I will delete this task.....");
             String taskDescription = list.get(taskNumber).toString();
-            System.out.println("     " + Utilities.strikethrough(taskDescription));
-            Utilities.printBorder();
+            System.out.println("     " + UI.strikethrough(taskDescription));
+            UI.printBorder();
 
             list.remove(taskNumber);
         }
@@ -75,21 +76,21 @@ public class Commands {
 
         list.add(new Deadline(taskAction, deadlineBy));
 
-        Utilities.printBorder();
+        UI.printBorder();
         System.out.println("     Ok..... I have added this \"deadline\" task.....");
         System.out.println("     " + list.get(list.size() - 1).toString());
         System.out.println("     You now have " + list.size() + " tasks in the list...");
-        Utilities.printBorder();
+        UI.printBorder();
     }
 
     public static void Todo(ArrayList<Task> list, String taskDescription) {
         list.add(new Todo(taskDescription));
 
-        Utilities.printBorder();
+        UI.printBorder();
         System.out.println("     Ok..... I have added this \"todo\" task.....");
         System.out.println("     " + list.get(list.size() - 1).toString());
         System.out.println("     You now have " + list.size() + " tasks in the list...");
-        Utilities.printBorder();
+        UI.printBorder();
     }
 
     public static void Event(ArrayList<Task> list, String taskDescription) {
@@ -109,11 +110,14 @@ public class Commands {
             throw new InvalidEventException();
         }
 
-        Utilities.printBorder();
+        UI.printBorder();
         System.out.println("     Ok..... I have added this \"event\" task.....");
         System.out.println("     " + list.get(list.size() - 1).toString());
         System.out.println("     You now have " + list.size() + " tasks in the list...");
-        Utilities.printBorder();
+        UI.printBorder();
     }
 
+    public static void Exit(){
+        IO.isRunning = false;
+    }
 }

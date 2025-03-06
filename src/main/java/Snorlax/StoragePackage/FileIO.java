@@ -1,11 +1,11 @@
-package Snorlax.IOPackage;
+package Snorlax.StoragePackage;
 
 import java.io.*;
-import Snorlax.TaskPackage.*;
+import Snorlax.TaskListPackage.*;
 import java.util.ArrayList;
+import static Snorlax.Snorlax.FILE_PATH;
 
 public class FileIO {
-    private static final String FILE_PATH = "./data/SnorlaxData.txt";
 
     public static void saveTasks(ArrayList<Task> tasks) {
         File file = new File(FILE_PATH);

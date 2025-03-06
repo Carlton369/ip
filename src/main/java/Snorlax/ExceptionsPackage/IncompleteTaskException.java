@@ -1,14 +1,14 @@
 package Snorlax.ExceptionsPackage;
 
-import Snorlax.UtilityPackage.Utilities;
+import Snorlax.UIPackage.UI;
 
 //when user tries to unmark an uncompleted task
 public class IncompleteTaskException extends SnorlaxException {
 
     @Override
     public void handle() {
-        Utilities.printBorder();
+        UI.printBorder();
         System.out.println("     Task is not done.....");
-        Utilities.printBorder();
+        UI.printBorder();
     }
 }

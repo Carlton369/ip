@@ -1,6 +1,4 @@
-package Snorlax.TaskPackage;
-
-import Snorlax.IOPackage.IO;
+package Snorlax.TaskListPackage;
 
 public class Task {
     public String description;

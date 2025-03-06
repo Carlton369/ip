@@ -1,4 +1,4 @@
-package Snorlax.TaskPackage;
+package Snorlax.TaskListPackage;
 
 public class Deadline extends Task {
 

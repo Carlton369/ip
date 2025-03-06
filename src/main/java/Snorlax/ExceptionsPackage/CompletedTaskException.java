@@ -1,14 +1,14 @@
 package Snorlax.ExceptionsPackage;
 
-import Snorlax.UtilityPackage.Utilities;
+import Snorlax.UIPackage.UI;
 
 //when user tries to mark an already completed task as done
 public class CompletedTaskException extends SnorlaxException {
 
     @Override
     public void handle() {
-        Utilities.printBorder();
+        UI.printBorder();
         System.out.println("     Task is already done.....");
-        Utilities.printBorder();
+        UI.printBorder();
     }
 }

@@ -1,14 +1,14 @@
 package Snorlax.ExceptionsPackage;
 
-import Snorlax.UtilityPackage.Utilities;
+import Snorlax.UIPackage.UI;
 
 public class InvalidDeadlineException extends SnorlaxException {
 
     @Override
     public void handle() {
-        Utilities.printBorder();
+        UI.printBorder();
         System.out.println("     Invalid deadline.....");
-        Utilities.printBorder();
+        UI.printBorder();
     }
 }
 

@@ -1,14 +1,14 @@
 package Snorlax.ExceptionsPackage;
 
-import Snorlax.UtilityPackage.Utilities;
+import Snorlax.UIPackage.UI;
 
 //when user gives a proper command but does not give give a description
 public class InvalidTaskException extends SnorlaxException {
 
     @Override
     public void handle() {
-        Utilities.printBorder();
+        UI.printBorder();
         System.out.println("     Invalid task.....");
-        Utilities.printBorder();
+        UI.printBorder();
     }
 }
