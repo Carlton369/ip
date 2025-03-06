@@ -93,7 +93,7 @@ public class Commands {
             UI.printBorder();
             System.out.println("     Ok..... I will delete this task.....");
             String taskDescription = list.get(taskNumber).toString();
-            System.out.println("     " + UI.strikethrough(taskDescription));
+            System.out.println("     " + taskDescription);
             UI.printBorder();
 
             list.remove(taskNumber);
