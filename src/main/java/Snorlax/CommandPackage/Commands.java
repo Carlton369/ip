@@ -2,8 +2,13 @@ package Snorlax.CommandPackage;
 
 import Snorlax.ParserPackage.IO;
 import Snorlax.ExceptionsPackage.*;
+import Snorlax.Snorlax;
 import Snorlax.TaskListPackage.*;
 import Snorlax.UIPackage.UI;
+
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class Commands {
@@ -65,16 +70,20 @@ public class Commands {
     }
 
     public static void Deadline(ArrayList<Task> list, String taskDescription) {
-        String[] splitTaskDescription = taskDescription.split("/by");
 
-        if (splitTaskDescription.length != 2) {
-            throw new InvalidDeadlineException();
+        try {
+            String[] splitTaskDescription = taskDescription.split("/by");
+
+            if (splitTaskDescription.length != 2) {
+                throw new InvalidDeadlineException();
+            }
+            String taskAction = splitTaskDescription[0].trim();
+            String deadlineBy = splitTaskDescription[1].trim();
+            list.add(new Deadline(taskAction, deadlineBy));
+
+        } catch (DateTimeParseException e) {
+            throw new SnorlaxDateException();
         }
-
-        String taskAction = splitTaskDescription[0].trim();
-        String deadlineBy = splitTaskDescription[1].trim();
-
-        list.add(new Deadline(taskAction, deadlineBy));
 
         UI.printBorder();
         System.out.println("     Ok..... I have added this \"deadline\" task.....");
@@ -108,6 +117,8 @@ public class Commands {
             list.add(new Event(eventDescription, eventStart, eventEnd));
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidEventException();
+        } catch (DateTimeParseException e) {
+            throw new SnorlaxDateException();
         }
 
         UI.printBorder();
@@ -117,6 +128,34 @@ public class Commands {
         UI.printBorder();
     }
 
+    public static void CheckOnDate(ArrayList<Task> list, String inputDate) {
+        try {
+            UI.printBorder();
+            System.out.println("     Here's what's going on.....");
+            LocalDate date = LocalDate.parse(inputDate);
+            for (Task task : list) {
+                if (task instanceof Deadline) {
+                    Deadline deadline = (Deadline) task;
+                    if (deadline.getBy().isEqual(date)) {
+                        System.out.println("     " + deadline);
+                    }
+                } else if (task instanceof Event) {
+                    Event event = (Event) task;
+                    LocalDate from = event.getFrom();
+                    LocalDate to = event.getTo();
+                    boolean isAfter = date.isAfter(from) || date.isEqual(from);
+                    boolean isBefore = date.isBefore(to) || date.isEqual(to);
+                    if (isAfter && isBefore) {
+                        System.out.println("     " + event);
+                    }
+                }
+            }
+        } catch (DateTimeParseException e) {
+            throw new SnorlaxDateException();
+        } finally {
+            UI.printBorder();
+        }
+    }
     public static void Exit(){
         IO.isRunning = false;
     }
