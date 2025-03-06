@@ -5,8 +5,16 @@ import Snorlax.TaskListPackage.*;
 import java.util.ArrayList;
 import static Snorlax.Snorlax.FILE_PATH;
 
+/**
+ * Handles file input and output operations for saving and loading tasks.
+ */
 public class FileIO {
 
+    /**
+     * Saves the list of tasks to a file.
+     *
+     * @param tasks The list of tasks to save.
+     */
     public static void saveTasks(ArrayList<Task> tasks) {
         File file = new File(FILE_PATH);
 
@@ -20,6 +28,11 @@ public class FileIO {
         }
     }
 
+    /**
+     * Loads the list of tasks from a file.
+     *
+     * @return The list of tasks loaded from the file.
+     */
     public static ArrayList<Task> loadTasks() {
         ArrayList<Task> list = new ArrayList<>();
         File file = new File(FILE_PATH);
@@ -37,21 +50,27 @@ public class FileIO {
                 boolean isDone = parts[0].equals("1");
                 String[] splitTaskDescription = taskDescription.split(" ", 2);
 
-                switch (splitTaskDescription[0]){
+                switch (splitTaskDescription[0]) {
                 case "todo" -> {
                     list.add(new Todo(splitTaskDescription[1]));
-                    if (isDone) {list.get(list.size() - 1).markAsDone();}
+                    if (isDone) {
+                        list.get(list.size() - 1).markAsDone();
+                    }
                 }
                 case "deadline" -> {
                     String[] splitDeadlineDescription = taskDescription.split("/by");
                     list.add(new Deadline(splitDeadlineDescription[0], splitDeadlineDescription[1]));
-                    if (isDone) {list.get(list.size() - 1).markAsDone();}
+                    if (isDone) {
+                        list.get(list.size() - 1).markAsDone();
+                    }
                 }
                 case "event" -> {
                     String[] splitEventDescription = taskDescription.split("/from");
                     String[] eventToFrom = splitEventDescription[1].split("/to");
                     list.add(new Event(splitEventDescription[0], eventToFrom[0], eventToFrom[1]));
-                    if (isDone) {list.get(list.size() - 1).markAsDone();}
+                    if (isDone) {
+                        list.get(list.size() - 1).markAsDone();
+                    }
                 }
                 }
             }

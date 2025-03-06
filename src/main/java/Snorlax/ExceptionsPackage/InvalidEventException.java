@@ -2,9 +2,18 @@ package Snorlax.ExceptionsPackage;
 
 import Snorlax.UIPackage.UI;
 
-//when user tries to make a new event but does not give a description, start time, or end time
+/**
+ * Exception thrown when an attempt is made to add an Event Task without a valid description, start, or end date
+ * This class extends {@code SnorlaxException} and provides a custom handler for the exception.
+ *
+ */
 public class InvalidEventException extends SnorlaxException {
 
+    /**
+     * Handles the exception by printing a message indicating the input description is invalid.
+     * The message is with borders
+     *
+     */
     @Override
     public void handle() {
         UI.printBorder();

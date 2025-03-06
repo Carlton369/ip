@@ -8,23 +8,49 @@ import Snorlax.TaskListPackage.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+/**
+ * The IO class handles user input and command parsing for the Snorlax task manager.
+ */
 public class IO {
 
+    /**
+     * Boolean flag to indicate if the program is running.
+     */
     public static boolean isRunning = true;
 
-    public static String readCommand (){
+    /**
+     * Reads a command from the user.
+     *
+     * @return The trimmed user input as a string.
+     */
+    public static String readCommand() {
         String userInput;
         Scanner in = new Scanner(System.in);
         userInput = in.nextLine().trim();
         return userInput;
     }
 
-    public static String[] parseUserInput (String userInput){
+    /**
+     * Parses the user input into command and arguments.
+     *
+     * @param userInput The full user input string.
+     * @return An array where the first element is the command and the second element (if any) is the argument.
+     */
+    public static String[] parseUserInput(String userInput) {
         return userInput.split(" ", 2);
     }
 
-    public static void handleInput (ArrayList<Task> list, String[] splitLine) {
+    /**
+     * Handles the parsed user input and executes the corresponding command.
+     *
+     * @param list      The list of tasks.
+     * @param splitLine The parsed user input.
+     * @throws InvalidTaskException    If the task number is missing or invalid.
+     * @throws FullListException       If the task list is full (100 tasks limit).
+     * @throws NoInputException        If no input is provided.
+     * @throws InvalidCommandException If an unrecognized command is entered.
+     */
+    public static void handleInput(ArrayList<Task> list, String[] splitLine) {
         switch (splitLine[0].toLowerCase()) {
         case "list" -> {
             Commands.List(list);
@@ -52,7 +78,7 @@ public class IO {
                 throw new InvalidTaskException();
             } else {
                 int taskNumber = Integer.parseInt(splitLine[1]) - 1;
-                Commands.Delete(list,taskNumber);
+                Commands.Delete(list, taskNumber);
                 FileIO.saveTasks(list);
             }
         }

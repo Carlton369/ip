@@ -6,7 +6,18 @@ import Snorlax.TaskListPackage.*;
 import Snorlax.UIPackage.UI;
 import java.util.ArrayList;
 
+/**
+ * This class represents the commands and handles the execution
+ *
+ * @author Yee Zhan Xian Carlton
+ */
 public class Commands {
+    /**
+     * Prints out all items in the list
+     * If empty list, prints error message indicating empty list
+     *
+     * @param list list to be printed out
+     */
     public static void List(ArrayList<Task> list) {
         UI.printBorder();
         if (list.isEmpty()) {
@@ -19,7 +30,14 @@ public class Commands {
         }
         UI.printBorder();
     }
-
+    /**
+     * Marks a specified unmarked Task as done
+     * Prints a message with borders to indicate the task has been marked
+     * @param list list storing all tasks
+     * @param taskNumber index of task to be marked
+     * @throws NonexistentTaskException if taskNumber does not exist in list
+     * @throws CompletedTaskException if specified task is already marked as done
+     */
     public static void Mark(ArrayList<Task> list, int taskNumber) {
         if (taskNumber < 0 || taskNumber >= list.size()) {
             throw new NonexistentTaskException();
@@ -34,7 +52,15 @@ public class Commands {
             UI.printBorder();
         }
     }
-
+    /**
+     * Unmarks a specified already marked Task as not done
+     * Prints a message with borders to indicate the task has been unmarked
+     *
+     * @param list list storing all tasks
+     * @param taskNumber index of task to be unmarked
+     * @throws NonexistentTaskException if taskNumber does not exist in list
+     * @throws IncompleteTaskException if specified task is not marked as done
+     */
     public static void Unmark(ArrayList<Task> list, int taskNumber) {
         if (taskNumber < 0 || taskNumber >= list.size()) {
             throw new NonexistentTaskException();
@@ -49,7 +75,14 @@ public class Commands {
             UI.printBorder();
         }
     }
-
+    /**
+     * Deletes a specified task in the list
+     * Prints a message with borders to indicate the deleted task
+     *
+     * @param list  list storing all tasks
+     * @param taskNumber index of task to be deleted
+     * @throws NonexistentTaskException if taskNumber does not exist in list
+     */
     public static void Delete(ArrayList<Task> list, int taskNumber) {
         if (taskNumber < 0 || taskNumber >= list.size()) {
             throw new NonexistentTaskException();
@@ -63,7 +96,14 @@ public class Commands {
             list.remove(taskNumber);
         }
     }
-
+    /**
+     * Creates a new Deadline task in the list
+     * Prints a message with borders to indicate the new Deadline task
+     *
+     * @param list list to store all tasks
+     * @param taskDescription description of the task to be created
+     * @throws InvalidDeadlineException if there is no deadline indicated
+     */
     public static void Deadline(ArrayList<Task> list, String taskDescription) {
         String[] splitTaskDescription = taskDescription.split("/by");
 
@@ -82,7 +122,13 @@ public class Commands {
         System.out.println("     You now have " + list.size() + " tasks in the list...");
         UI.printBorder();
     }
-
+    /**
+     * Creates a new Todo task in the list
+     * Prints a message with borders to indicated the new Todo task
+     *
+     * @param list list to store all tasks
+     * @param taskDescription description of the task to be created
+     */
     public static void Todo(ArrayList<Task> list, String taskDescription) {
         list.add(new Todo(taskDescription));
 
@@ -92,7 +138,15 @@ public class Commands {
         System.out.println("     You now have " + list.size() + " tasks in the list...");
         UI.printBorder();
     }
-
+    /**
+     * Creates a new Event task in the list
+     * Prints a message with borders to indicated the new Event task
+     *
+     * @param list list to store all tasks
+     * @param taskDescription description of the task to be created
+     * @throws InvalidEventException if no description was given
+     * @throws IndexOutOfBoundsException if description is missing a start or end date
+     */
     public static void Event(ArrayList<Task> list, String taskDescription) {
         try {
             String[] splitDescription = taskDescription.split("/from", 2);
@@ -116,7 +170,10 @@ public class Commands {
         System.out.println("     You now have " + list.size() + " tasks in the list...");
         UI.printBorder();
     }
-
+    /**
+     * Sets the isRunning boolean to false, causing program to exit
+     *
+     */
     public static void Exit(){
         IO.isRunning = false;
     }
