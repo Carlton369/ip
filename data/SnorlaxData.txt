@@ -1,3 +1,8 @@
+
 0|todo bye
 0|event bong/from2/to3
 0|deadline yeet/by3
+0|todo list
+0|deadline hi/by2012-10-10
+0|event yeet/from2012-10-10/to2020-12-12
+

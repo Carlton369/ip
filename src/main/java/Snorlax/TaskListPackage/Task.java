@@ -1,5 +1,6 @@
 package Snorlax.TaskListPackage;
 
+import java.time.LocalDate;
 public class Task {
     public String description;
     public boolean isDone;
@@ -7,6 +8,13 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+    }
+
+    public String formatDate(LocalDate date) {
+        String day = String.valueOf(date.getDayOfMonth());
+        String month = date.getMonth().toString();
+        String year = String.valueOf(date.getYear());
+        return day + "-" + month + "-" + year;
     }
 
     public String getStatusIcon() {
