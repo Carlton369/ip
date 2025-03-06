@@ -1,6 +1,7 @@
 # Snorlax User Guide
 
 Snorlax is a task management application that helps you keep track of your tasks. You can add, delete, mark, unmark, find, and list tasks. You can also search if there are any Tasks on a certain date. Tasks can be of three types: Todo, Deadline, and Event.
+Note that any variable in CAPS_LOCK is meant to be for the user's input, while non caps-lock is a fixed command that is expected by the program
 
 ## Features
 
@@ -171,7 +172,7 @@ Lists tasks that are due or happening on a specific date.
 
 **Usage:**
 ```
-on DATE
+on DATE(yyyy-MM-dd)
 ```
 
 **Example:**
