@@ -89,6 +89,14 @@ public class IO {
         case "bye" -> {
             Commands.Exit();
         }
+
+        case "find" -> {
+            if (splitLine.length != 2) {
+                throw new InvalidTaskException();
+            } else {
+                Commands.Find(list, splitLine[1]);
+            }
+        }
         default -> {
             if (splitLine[0].isEmpty()) {
                 throw new NoInputException();

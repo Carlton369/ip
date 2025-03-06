@@ -117,7 +117,17 @@ public class Commands {
         UI.printBorder();
     }
 
-    public static void Exit(){
+    public static void Exit() {
         IO.isRunning = false;
+    }
+
+    public static void Find(ArrayList<Task> list, String toFindKey) {
+        UI.printBorder();
+        System.out.println("     Here are the related tasks:.....");
+        for (Task task : list) {
+            if (task.description.contains(toFindKey)) {
+                System.out.println("     "  + task.toString());
+            }
+        }
     }
 }
