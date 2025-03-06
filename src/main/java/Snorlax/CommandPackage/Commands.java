@@ -2,11 +2,9 @@ package Snorlax.CommandPackage;
 
 import Snorlax.ParserPackage.IO;
 import Snorlax.ExceptionsPackage.*;
-import Snorlax.Snorlax;
 import Snorlax.TaskListPackage.*;
 import Snorlax.UIPackage.UI;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -188,7 +186,14 @@ public class Commands {
     public static void Exit(){
         IO.isRunning = false;
     }
-
+    /**
+     * Checks list for any Deadlines or Events occuring on inputDate
+     * Prints any results back to the user
+     *
+     * @param list list to store all tasks
+     * @param inputDate date to search for deadlines or tasks
+     * @throws DateTimeParseException if inputDate not in correct format
+     */
     public static void CheckOnDate(ArrayList<Task> list, String inputDate) {
         try {
             UI.printBorder();
@@ -217,7 +222,12 @@ public class Commands {
             UI.printBorder();
         }
     }
-
+    /**
+     * Checks list if any Tasks have a description matching the input keyword
+     *
+     * @param list list to store all tasks
+     * @param toFindKey keyword to search for
+     */
     public static void Find(ArrayList<Task> list, String toFindKey) {
         UI.printBorder();
         System.out.println("     Here are the related tasks:.....");
