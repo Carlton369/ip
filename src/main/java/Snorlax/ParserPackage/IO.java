@@ -5,6 +5,7 @@ import Snorlax.ExceptionsPackage.*;
 import Snorlax.StoragePackage.FileIO;
 import Snorlax.TaskListPackage.*;
 
+import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,7 +25,7 @@ public class IO {
         return userInput.split(" ", 2);
     }
 
-    public static void handleInput (ArrayList<Task> list, String[] splitLine) {
+    public static void handleInput (ArrayList<Task> list, String[] splitLine)  {
         switch (splitLine[0].toLowerCase()) {
         case "list" -> {
             Commands.List(list);
@@ -88,6 +89,15 @@ public class IO {
         }
         case "bye" -> {
             Commands.Exit();
+        }
+        case "on" -> {
+            if (splitLine.length != 2) {
+                throw new InvalidTaskException();
+            } else if (list.size() >= 100) {
+                throw new FullListException();
+            } else {
+                Commands.CheckOnDate(list, splitLine[1]);;
+            }
         }
 
         case "find" -> {
